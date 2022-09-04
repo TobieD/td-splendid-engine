@@ -15,9 +15,7 @@ public:
 };
 
 
-int main()
+Splendid::Application* Splendid::CreateApplication()
 {
-	Sandbox* sandbox = new Sandbox();
-	sandbox->Run();
-	delete sandbox;
+	return new Sandbox();
 }
