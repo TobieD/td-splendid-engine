@@ -1,8 +1,10 @@
 #pragma once
 
+#include "Core.h"
+
 namespace Splendid
 {
-	class Application
+	class SPLENDID_API Application
 	{
 		public:
 			Application();
