@@ -17,5 +17,7 @@ public:
 
 Splendid::Application* Splendid::CreateApplication()
 {
+	SP_INFO->info("Hello From app");
+
 	return new Sandbox();
 }
