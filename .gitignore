@@ -4,4 +4,7 @@ bin-int/
 
 # Visual Studio files and folder
 .vs/
-**.vcxproj.user
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj
+*.sln
