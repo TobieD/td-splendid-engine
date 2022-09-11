@@ -2,9 +2,9 @@
 
 //For use by integrator applications
 
-#include "Core/Log.h"
-#include "Core/Application.h"
+#include "Splendid/Core/Log.h"
+#include "Splendid/Core/Application.h"
 
 // ########## Entry Point ##############
-#include "Core/EntryPoint.h"
+#include "Splendid/Core/EntryPoint.h"
 // #####################################

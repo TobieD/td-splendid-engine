@@ -17,7 +17,7 @@ namespace Splendid
 
 		std::string ToString() const override
 		{
-			std:stringstream ss;
+			std::stringstream ss;
 			ss << GetName() << "Event: " << m_Button;
 			return ss.str();
 		}
@@ -64,7 +64,7 @@ namespace Splendid
 
 		std::string ToString() const override
 		{
-			std:stringstream ss;
+			std::stringstream ss;
 			ss << "MouseMovedEvent: [" << m_MouseX << "," << m_MouseY << "]";
 			return ss.str();
 		}
@@ -87,7 +87,7 @@ namespace Splendid
 
 		std::string ToString() const override
 		{
-			std:stringstream ss;
+			std::stringstream ss;
 			ss << "MouseScrolledEvent: [" << m_OffsetX << "," << m_OffsetY << "]";
 			return ss.str();
 		}

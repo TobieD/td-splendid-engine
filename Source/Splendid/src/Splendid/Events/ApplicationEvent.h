@@ -17,15 +17,16 @@ namespace Splendid
 		inline unsigned int GetWidth() const { return m_Width; }
 		inline unsigned int GetHeight() const { return m_Height; }
 
-		EVENT_CLASS_TYPE(WindowResize)
-			EVENT_CLASS_Category(Application)
-
-			std::string ToString() const override
+		std::string ToString() const override
 		{
-		std:stringstream ss;
+			std::stringstream ss;
 			ss << "WindowResizeEvent: [" << m_Width << " ," << m_Height << "]";
 			return ss.str();
 		}
+
+		EVENT_CLASS_TYPE(WindowResize)
+		EVENT_CLASS_CATEGORY(Application)
+
 	private:
 		unsigned int m_Width, m_Height;
 	};
@@ -36,7 +37,7 @@ namespace Splendid
 		WindowCloseEvent() {}
 
 		EVENT_CLASS_TYPE(WindowClose)
-		EVENT_CLASS_Category(Application)
+		EVENT_CLASS_CATEGORY(Application)
 	};
 
 	class SPLENDID_API WindowFocusEvent : public Event
@@ -45,7 +46,7 @@ namespace Splendid
 		WindowFocusEvent() {}
 
 		EVENT_CLASS_TYPE(WindowFocus)
-		EVENT_CLASS_Category(Application)
+		EVENT_CLASS_CATEGORY(Application)
 	};
 
 	class SPLENDID_API WindowLostFocusEvent : public Event
@@ -54,7 +55,7 @@ namespace Splendid
 		WindowLostFocusEvent() {}
 
 		EVENT_CLASS_TYPE(WindowLostFocus)
-		EVENT_CLASS_Category(Application)
+		EVENT_CLASS_CATEGORY(Application)
 	};
 
 

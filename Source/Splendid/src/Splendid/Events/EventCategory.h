@@ -13,4 +13,6 @@ namespace Splendid
 		Mouse = BIT(3),
 		MouseButton = BIT(4)
 	};
+
+	#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 }
