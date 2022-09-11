@@ -1,6 +1,6 @@
 #include <Splendid.h>
 
-class Sandbox : public Splendid::Application
+class Sandbox : public Splendid::SplendidApplication
 {
 public:
 	Sandbox()
@@ -15,7 +15,7 @@ public:
 };
 
 
-Splendid::Application* Splendid::CreateApplication()
+Splendid::SplendidApplication* Splendid::CreateApplication()
 {
 	//SP_INFO->info("Hello From app");
 
