@@ -36,7 +36,7 @@ namespace Splendid
 		MouseButtonPressedEvent(int button)
 			: MouseButtonEvent(button) { }		
 
-		EVENT_CLASS_TYPE(MouseButtonPressed);
+		EVENT_CLASS_TYPE(MouseButtonPressed)
 
 	};
 
@@ -46,7 +46,7 @@ namespace Splendid
 		MouseButtonReleasedEvent(int button)
 			: MouseButtonEvent(button) { }
 
-		EVENT_CLASS_TYPE(MouseButtonReleased);
+		EVENT_CLASS_TYPE(MouseButtonReleased)
 
 	};
 

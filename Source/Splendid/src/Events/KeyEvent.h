@@ -38,7 +38,7 @@ namespace Splendid
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(KeyPressed);
+		EVENT_CLASS_TYPE(KeyPressed)
 
 	private:
 		int m_RepeatCount;
@@ -51,7 +51,7 @@ namespace Splendid
 		KeyReleasedEvent(int keyCode)
 			: KeyEvent(keyCode)) { }
 
-		EVENT_CLASS_TYPE(KeyReleased);
+		EVENT_CLASS_TYPE(KeyReleased)
 
 		std::string ToString() const override
 		{
