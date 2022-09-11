@@ -24,6 +24,9 @@ project "Splendid"
     targetdir ("bin/" .. outputDirectory .. "/%{prj.name}")
     objdir ("bin-int/" .. outputDirectory .. "/%{prj.name}")
 
+    pchheader "splendidpch.h"
+    pchsource "Splendid/src/splendidpch.cpp"
+
     files
     {
         "%{prj.name}/src/**.h",
