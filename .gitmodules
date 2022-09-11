@@ -1,3 +1,6 @@
 [submodule "Source/Splendid/vendor/spdlog"]
 	path = Source/Splendid/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Source/Splendid/vendor/GLFW"]
+	path = Source/Splendid/vendor/GLFW
+	url = https://github.com/TobieD/glfw

@@ -12,6 +12,12 @@ workspace "Splendid"
 
 outputDirectory = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" --eg. debug-windows-x64
 
+-- Dependencies
+IncludeDir = {}
+IncludeDir["GLFW"] = "Splendid/vendor/GLFW/include"
+
+include "Splendid/vendor/GLFW" --includes the Premake file
+
 ---------------------------------------------
 ---------------- Engine ---- ----------------
 ---------------------------------------------
@@ -36,7 +42,14 @@ project "Splendid"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
