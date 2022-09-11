@@ -9,6 +9,6 @@ namespace Splendid
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		KeyPressed, KeyReleased,
-		MouseButtonPressed, MouseButtonReleased, MouseMoved
+		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 }
