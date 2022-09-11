@@ -1,3 +1,4 @@
+#include "splendidpch.h"
 #include "Application.h"
 
 #include "Splendid/Events/ApplicationEvent.h"

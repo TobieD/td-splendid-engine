@@ -4,8 +4,6 @@
 #include "EventType.h"
 #include "EventCategory.h"
 
-#include <sstream>
-
 namespace Splendid
 {
 	class SPLENDID_API MouseButtonEvent : public Event

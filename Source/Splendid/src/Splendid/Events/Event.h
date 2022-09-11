@@ -4,9 +4,6 @@
 #include "EventType.h"
 #include "EventCategory.h"
 
-#include <string>
-#include <functional>
-
 namespace Splendid
 {
 	//Events are currently blocking, meaning if an event occurs it will get dispatched and must be dealt with immediatly
