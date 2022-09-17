@@ -2,9 +2,17 @@
 #include <splendidpch.h>
 #include "WindowsWindow.h"
 
+#include "Splendid\Events\ApplicationEvent.h"
+#include "Splendid\Events\MouseEvent.h"
+#include "Splendid\Events\KeyEvent.h"
+
 namespace Splendid
 {
 	static uint8_t s_WindowsWindowCount = 0;
+	static void GLFWErrorCallback(int error, const char* description)
+	{
+		SP_CORE_ERROR("GLFW error {0}: {1}", error, description);
+	}
 
 	Window* Window::Create(const WindowConfig& config)
 	{
@@ -34,6 +42,8 @@ namespace Splendid
 			SP_CORE_INFO("Attempt to initialize GLFW");
 			int success = glfwInit();
 			SP_CORE_ASSERT(success, "Failed to initialize GLFW!");
+			
+			glfwSetErrorCallback(GLFWErrorCallback);
 			SP_CORE_INFO("Done initialize GLFW");
 		}
 
@@ -41,9 +51,97 @@ namespace Splendid
 
 		glfwMakeContextCurrent(m_Window);
 		glfwSetWindowUserPointer(m_Window, &m_Data);
-		glfwSwapInterval(1);
-
 		s_WindowsWindowCount++;
+
+		glfwSwapInterval(1); //VSync enabled
+
+		//Set up GLFW Callbacks
+		SetupCallbacks();
+	}
+
+	void WindowsWindow::SetupCallbacks()
+	{
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		{
+			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+			data.Width = width;
+			data.Height = height;
+
+			WindowResizeEvent event(width, height);
+			data.Callback(event);
+
+		});
+
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
+		{
+			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+
+			WindowCloseEvent event;
+			data.Callback(event);
+
+		});
+
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		{
+			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+
+			switch (action)
+			{
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent event(key, 0);
+					data.Callback(event);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent event(key);
+					data.Callback(event);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyPressedEvent event(key, 1);
+					data.Callback(event);
+					break;
+				}
+			}
+		});
+	
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
+		{
+			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+
+			switch (action)
+			{
+			case GLFW_PRESS:
+			{
+				MouseButtonPressedEvent event(button);
+				data.Callback(event);
+				break;
+			}
+			case GLFW_RELEASE:
+			{
+				MouseButtonReleasedEvent event(button);
+				data.Callback(event);
+				break;
+			}
+			}
+		});
+	
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
+		{
+			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+			MouseScrolledEvent event((float)xOffset, (float)yOffset);
+			data.Callback(event);
+		});
+
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double x, double y)
+		{
+			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+			MouseMovedEvent event((float)x, (float)y);
+			data.Callback(event);
+		});
 	}
 
 	void WindowsWindow::Shutdown()
@@ -54,6 +152,6 @@ namespace Splendid
 
 	void WindowsWindow::OnUpdate()
 	{
-
+		glfwPollEvents();
 	}
 }

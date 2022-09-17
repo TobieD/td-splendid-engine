@@ -13,9 +13,13 @@ namespace Splendid
 
 		void OnUpdate() override;
 
+		virtual void SetEventCallback(const EventCallbackFunc& callback) { m_Data.Callback = callback; }
+
 	private:
 		virtual void Initialize(const WindowConfig& config);
 		virtual void Shutdown();
+
+		void SetupCallbacks();
 
 	private:
 

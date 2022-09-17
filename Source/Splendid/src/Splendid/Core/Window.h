@@ -29,6 +29,7 @@ namespace Splendid
 		virtual void OnUpdate() = 0;
 
 		using EventCallbackFunc = std::function<void(Event&)> ;
+		virtual void SetEventCallback(const EventCallbackFunc& callback) = 0;
 
 		static Window* Create(const WindowConfig& config = WindowConfig());
 	};

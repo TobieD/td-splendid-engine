@@ -47,7 +47,7 @@ namespace Splendid
 	{
 	public:
 		KeyReleasedEvent(int keyCode)
-			: KeyEvent(keyCode)) { }
+			: KeyEvent(keyCode) { }
 
 		EVENT_CLASS_TYPE(KeyReleased)
 

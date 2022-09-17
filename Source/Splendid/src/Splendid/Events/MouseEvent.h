@@ -11,7 +11,7 @@ namespace Splendid
 	public:
 		inline int GetButton() const { return m_Button; }
 
-		EVENT_CLASS_Category(Mouse | Input)
+		EVENT_CLASS_CATEGORY(Mouse|Input)
 
 		std::string ToString() const override
 		{
@@ -21,7 +21,7 @@ namespace Splendid
 		}
 
 	protected:
-		MousePressedEvent(int button)
+		MouseButtonEvent(int button)
 			:m_Button(button) {}
 
 		int m_Button;
