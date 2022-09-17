@@ -69,7 +69,11 @@ project "Splendid"
         }
     
     filter "configurations:Debug"
-        defines "SP_DEBUG"
+        defines
+        {
+            "SP_DEBUG", 
+            "SP_ENABLE_ASSERTION"
+        }
         symbols "On"
 
     filter "configurations:Release"

@@ -16,4 +16,6 @@
 	#include <Windows.h>
 #endif
 
+#include "Splendid\Core\Log.h"
+
 
