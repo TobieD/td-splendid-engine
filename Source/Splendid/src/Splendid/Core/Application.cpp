@@ -1,7 +1,7 @@
 #include "splendidpch.h"
 #include "Application.h"
 
-#include "Splendid/Events/ApplicationEvent.h"
+
 #include "Splendid/Core/Log.h"
 
 namespace Splendid
@@ -28,6 +28,16 @@ namespace Splendid
 
 	void SplendidApplication::OnEvent(Event& e)
 	{
-		SP_CORE_INFO("{0}", e);
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+
+
+		SP_CORE_DEBUG("{0}", e);
+	}
+
+	bool SplendidApplication::OnWindowClose(WindowCloseEvent& e)
+	{
+		m_Running = false;
+		return true;
 	}
 }
