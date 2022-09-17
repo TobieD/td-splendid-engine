@@ -8,6 +8,7 @@ namespace Splendid
 {
 	SplendidApplication::SplendidApplication()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	SplendidApplication::~SplendidApplication()
@@ -16,9 +17,9 @@ namespace Splendid
 
 	void SplendidApplication::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		SP_DEBUG(e);
-
-		while (true);
+		while (m_Running)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 }

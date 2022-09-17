@@ -2,6 +2,7 @@
 #include <splendidpch.h>
 
 #include "Splendid/Core/Core.h"
+#include "Splendid/Events/Event.h"
 
 namespace Splendid
 {
@@ -27,7 +28,7 @@ namespace Splendid
 
 		virtual void OnUpdate() = 0;
 
-		using EventCallbackFunc = std::function<void>(Event&) > ;
+		using EventCallbackFunc = std::function<void(Event&)> ;
 
 		static Window* Create(const WindowConfig& config = WindowConfig());
 	};
