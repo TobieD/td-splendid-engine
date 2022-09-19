@@ -41,4 +41,38 @@ Splendid::Application* Splendid::CreateApplication()
 - As a submodule
 ```
 git submodule add https://github.com/gabime/spdlog Splendid/vendor/spdlog
+git submodule add https://github.com/TobieD/glfw Splendid/vendor/GLFW
 ```
+
+- Update Premake to include path
+
+## Precompiled headers
+
+Used to improve build times (especially on minor changes to files).
+Useful in the long term when lots of files are needed
+
+include the pch file in all .cpp files!
+
+
+## Window API
+
+- GLFW: Easy to use, cross platform, does not support DirectX, easy to set it up for running quickly
+- Win32: Windows ideal, allows DirectX
+- Vulkan
+	- https://vulkan-tutorial.com/
+
+-> Window class per platform
+
+
+## Layers
+
+Layers define the order things are drawn, updated, processed in
+
+- Rendering is bottom to top
+- Input is top to bottom
+
+examples:
+- 3D game world: One layer, holds the scene
+- Debug layer on gameworld, gizmo's, ..
+- UI Layer: 2D orthographic projection
+- Debug layer for 2D graphics (ImGui, Cheat menu
