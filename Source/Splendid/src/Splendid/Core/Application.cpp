@@ -18,10 +18,16 @@ namespace Splendid
 	{
 	}
 
+	#pragma region  Application Loops
 	void SplendidApplication::Run()
 	{
 		while (m_Running)
 		{
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnUpdate();
+			}
+
 			m_Window->OnUpdate();
 		}
 	}
@@ -31,13 +37,34 @@ namespace Splendid
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-
-		SP_CORE_DEBUG("{0}", e);
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled)
+			{
+				break;
+			}
+		}
+		
 	}
+
+	#pragma endregion
 
 	bool SplendidApplication::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;
 		return true;
 	}
+
+	#pragma region  Layer Stack Management
+	void SplendidApplication::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void SplendidApplication::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PushOverlay(overlay);
+	}
+	#pragma endregion
 }

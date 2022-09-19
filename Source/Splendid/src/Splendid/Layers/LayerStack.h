@@ -6,6 +6,7 @@
 
 namespace Splendid
 {
+	//This is a wrapper around a layer list
 	class LayerStack
 	{
 	public:
