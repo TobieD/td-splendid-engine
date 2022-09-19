@@ -75,14 +75,17 @@ project "Splendid"
             "SP_ENABLE_ASSERTION"
         }
         symbols "On"
+		buildoptions "/MDd"
 
     filter "configurations:Release"
         defines "SP_RELEASE"
         optimize "On"
+		buildoptions "/MDd"
 
     filter "configurations:Distributable"
         defines "SP_DIST"
         optimize "On"
+		buildoptions "/MD"
 
 
 ---------------------------------------------
