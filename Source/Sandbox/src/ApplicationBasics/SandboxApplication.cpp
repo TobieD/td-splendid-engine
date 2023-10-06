@@ -16,7 +16,7 @@ public:
 
 	void OnEvent(Splendid::Event& event) override
 	{
-		SP_INFO("ExampleLayer:: {0}", event);
+		SP_INFO("ExampleLayer:: {0}", event.GetName());
 	}
 };
 
