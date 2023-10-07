@@ -65,7 +65,8 @@ project "Splendid"
         defines
         {
             "SP_PLATFORM_WINDOWS",
-            "SP_BUILD_DLL"
+            "SP_BUILD_DLL",
+            "GLFW_INCLUDE_NONE" 
         }
 
         postbuildcommands

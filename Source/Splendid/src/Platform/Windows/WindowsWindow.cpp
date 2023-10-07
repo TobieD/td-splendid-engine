@@ -6,6 +6,8 @@
 #include "Splendid\Events\MouseEvent.h"
 #include "Splendid\Events\KeyEvent.h"
 
+#include <glad/glad.h>
+
 namespace Splendid
 {
 	static uint8_t s_WindowsWindowCount = 0;
@@ -40,16 +42,20 @@ namespace Splendid
 		if (s_WindowsWindowCount == 0)
 		{
 			SP_CORE_INFO("Attempt to initialize GLFW");
-			int success = glfwInit();
-			SP_CORE_ASSERT(success, "Failed to initialize GLFW!");
-			
+			int glfwState = glfwInit();
+			SP_CORE_ASSERT(glfwState, "Failed to initialize GLFW!");
+
 			glfwSetErrorCallback(GLFWErrorCallback);
 			SP_CORE_INFO("Done initialize GLFW");
 		}
 
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
-
 		glfwMakeContextCurrent(m_Window);
+
+		int gladState = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		SP_CORE_ASSERT(gladState, "Failed to initialize glad!");
+
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		s_WindowsWindowCount++;
 
@@ -62,31 +68,31 @@ namespace Splendid
 	void WindowsWindow::SetupCallbacks()
 	{
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
-		{
-			Data& data = *(Data*)glfwGetWindowUserPointer(window);
-			data.Width = width;
-			data.Height = height;
+			{
+				Data& data = *(Data*)glfwGetWindowUserPointer(window);
+				data.Width = width;
+				data.Height = height;
 
-			WindowResizeEvent event(width, height);
-			data.Callback(event);
+				WindowResizeEvent event(width, height);
+				data.Callback(event);
 
-		});
+			});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
-		{
-			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+			{
+				Data& data = *(Data*)glfwGetWindowUserPointer(window);
 
-			WindowCloseEvent event;
-			data.Callback(event);
+				WindowCloseEvent event;
+				data.Callback(event);
 
-		});
+			});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
-		{
-			Data& data = *(Data*)glfwGetWindowUserPointer(window);
-
-			switch (action)
 			{
+				Data& data = *(Data*)glfwGetWindowUserPointer(window);
+
+				switch (action)
+				{
 				case GLFW_PRESS:
 				{
 					KeyPressedEvent event(key, 0);
@@ -105,43 +111,43 @@ namespace Splendid
 					data.Callback(event);
 					break;
 				}
-			}
-		});
-	
-		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
-		{
-			Data& data = *(Data*)glfwGetWindowUserPointer(window);
+				}
+			});
 
-			switch (action)
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 			{
-			case GLFW_PRESS:
-			{
-				MouseButtonPressedEvent event(button);
-				data.Callback(event);
-				break;
-			}
-			case GLFW_RELEASE:
-			{
-				MouseButtonReleasedEvent event(button);
-				data.Callback(event);
-				break;
-			}
-			}
-		});
-	
+				Data& data = *(Data*)glfwGetWindowUserPointer(window);
+
+				switch (action)
+				{
+				case GLFW_PRESS:
+				{
+					MouseButtonPressedEvent event(button);
+					data.Callback(event);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					MouseButtonReleasedEvent event(button);
+					data.Callback(event);
+					break;
+				}
+				}
+			});
+
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset)
-		{
-			Data& data = *(Data*)glfwGetWindowUserPointer(window);
-			MouseScrolledEvent event((float)xOffset, (float)yOffset);
-			data.Callback(event);
-		});
+			{
+				Data& data = *(Data*)glfwGetWindowUserPointer(window);
+				MouseScrolledEvent event((float)xOffset, (float)yOffset);
+				data.Callback(event);
+			});
 
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double x, double y)
-		{
-			Data& data = *(Data*)glfwGetWindowUserPointer(window);
-			MouseMovedEvent event((float)x, (float)y);
-			data.Callback(event);
-		});
+			{
+				Data& data = *(Data*)glfwGetWindowUserPointer(window);
+				MouseMovedEvent event((float)x, (float)y);
+				data.Callback(event);
+			});
 	}
 
 	void WindowsWindow::Shutdown()
