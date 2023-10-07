@@ -4,7 +4,7 @@
 
 namespace Splendid
 {
-	class ImGuiLayer : public Layer
+	class SPLENDID_API ImGuiLayer : public Layer
 	{
 
 	public:
@@ -18,7 +18,7 @@ namespace Splendid
 		void OnEvent(Splendid::Event& event);
 
 	private:
-
+		float m_Time = 0.0f;
 	};
 }
 

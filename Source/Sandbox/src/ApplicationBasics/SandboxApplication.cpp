@@ -11,12 +11,12 @@ public:
 
 	void OnUpdate() override
 	{
-		SP_INFO("ExampleLayer::Update");
+
 	}
 
 	void OnEvent(Splendid::Event& event) override
 	{
-		SP_INFO("ExampleLayer:: {0}", event.GetName());
+		
 	}
 };
 
@@ -27,6 +27,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Splendid::ImGuiLayer());
 	}
 
 	~Sandbox()

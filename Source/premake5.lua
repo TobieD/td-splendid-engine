@@ -16,7 +16,7 @@ outputDirectory = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" --eg. debu
 IncludeDir = {}
 IncludeDir["GLFW"] = "Splendid/vendor/GLFW/include"
 IncludeDir["glad"] = "Splendid/vendor/glad/include"
-IncludeDir["imgui"] = "Splendid/vendor/imgui/include"
+IncludeDir["imgui"] = "Splendid/vendor/imgui"
 
 --includes the Premake files
 include "Splendid/vendor/GLFW" 
@@ -70,7 +70,7 @@ project "Splendid"
         {
             "SP_PLATFORM_WINDOWS",
             "SP_BUILD_DLL",
-            "GLFW_INCLUDE_NONE" 
+            "GLFW_INCLUDE_NONE",
         }
 
         postbuildcommands

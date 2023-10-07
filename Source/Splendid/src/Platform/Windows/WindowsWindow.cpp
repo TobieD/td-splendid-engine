@@ -18,11 +18,13 @@ namespace Splendid
 
 	Window* Window::Create(const WindowConfig& config)
 	{
+		
 		return new WindowsWindow(config);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowConfig& config)
 	{
+		m_Config = config;
 		Initialize(config);
 	}
 

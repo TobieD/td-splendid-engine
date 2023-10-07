@@ -22,6 +22,9 @@ namespace Splendid
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		inline Window& GetWindow() { return *m_Window; }
+		inline static SplendidApplication& Get() { return *s_Instance; }
+
 	private:
 
 		bool OnWindowClose(WindowCloseEvent& e);
@@ -30,6 +33,10 @@ namespace Splendid
 		bool m_Running = true;
 
 		LayerStack m_LayerStack;
+
+	private: 
+		static SplendidApplication* s_Instance;
+		
 	};
 
 	//To be defined in CLIENT
