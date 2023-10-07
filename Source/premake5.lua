@@ -15,8 +15,11 @@ outputDirectory = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}" --eg. debu
 -- Dependencies
 IncludeDir = {}
 IncludeDir["GLFW"] = "Splendid/vendor/GLFW/include"
+IncludeDir["glad"] = "Splendid/vendor/glad/include"
 
-include "Splendid/vendor/GLFW" --includes the Premake file
+--includes the Premake files
+include "Splendid/vendor/GLFW" 
+include "Splendid/vendor/glad" 
 
 ---------------------------------------------
 ---------------- Engine ---- ----------------
@@ -43,12 +46,14 @@ project "Splendid"
     {
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.glad}"
     }
 
     links
     {
         "GLFW",
+        "glad",
         "opengl32.lib"
     }
 
