@@ -4,3 +4,6 @@
 [submodule "Source/Splendid/vendor/GLFW"]
 	path = Source/Splendid/vendor/GLFW
 	url = https://github.com/TobieD/glfw
+[submodule "Source/Splendid/vendor/imgui"]
+	path = Source/Splendid/vendor/imgui
+	url = https://github.com/TobieD/imgui
