@@ -15,6 +15,8 @@ namespace Splendid
 		//To implement per layer
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
+		virtual void OnRenderStart() {}
+		virtual void OnRenderEnd() {}
 		virtual void OnUpdate() {}
 		virtual void OnEvent(Event& event) {}
 

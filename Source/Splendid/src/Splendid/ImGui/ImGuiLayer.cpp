@@ -2,10 +2,11 @@
 #include "ImGuiLayer.h"
 
 #include "Platform/OpenGL/imgui_impl_opengl3.h"
+#include "Platform/OpenGL/imgui_impl_glfw.h"
 
 #include <GLFW/glfw3.h>
 #include <Splendid/Core/Application.h>
-
+#include <Platform/Windows/WindowsWindow.h>
 
 namespace Splendid
 {
@@ -29,7 +30,13 @@ namespace Splendid
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
-		ImGui_ImplOpenGL3_Init();
+		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+
+		GLFWwindow* window = glfwGetCurrentContext();
+		ImGui_ImplGlfw_InitForOpenGL(window, true);
+		ImGui_ImplOpenGL3_Init("#version 410");
+
+		SP_CORE_INFO("Initialized imGui");
 	}
 
 	void ImGuiLayer::OnDetach()
@@ -38,24 +45,26 @@ namespace Splendid
 		ImGui::DestroyContext();
 	}
 
+	void Splendid::ImGuiLayer::OnRenderStart()
+	{
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+	}
+
+	void Splendid::ImGuiLayer::OnRenderEnd()
+	{
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
+	
 	void Splendid::ImGuiLayer::OnUpdate()
 	{
 		ImGuiIO& io = ImGui::GetIO();
 
-		SplendidApplication& app = SplendidApplication::Get();
-		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
-
-		float time = (float)glfwGetTime();
-		io.DeltaTime = m_Time > 0.0f ? (time - m_Time) : (1.0f - 60.0f);
-		m_Time = time;
-
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui::NewFrame();
-
-		ImGui::ShowDemoWindow();
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		ImGui::Begin("Performance");
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+		ImGui::End();
 	}
 
 	void Splendid::ImGuiLayer::OnEvent(Splendid::Event& event)

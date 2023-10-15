@@ -18,7 +18,7 @@ namespace Splendid
 
 	Window* Window::Create(const WindowConfig& config)
 	{
-		
+
 		return new WindowsWindow(config);
 	}
 
@@ -57,7 +57,6 @@ namespace Splendid
 		int gladState = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		SP_CORE_ASSERT(gladState, "Failed to initialize glad!");
 
-		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		s_WindowsWindowCount++;
 
@@ -161,5 +160,21 @@ namespace Splendid
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
+	}
+
+	void WindowsWindow::OnStartRender()
+	{
+		glViewport(0, 0, m_Data.Width, m_Data.Height);
+
+		glClearColor(0.25f, 0.25f, 0.25f, 1.00f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+
+	}
+
+	void WindowsWindow::OnEndRender()
+	{
+		glfwSwapBuffers(m_Window);
+
 	}
 }

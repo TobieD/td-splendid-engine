@@ -26,6 +26,8 @@ namespace Splendid
 
 		virtual ~Window() = default;
 
+		virtual void OnStartRender() = 0;
+		virtual void OnEndRender() = 0;
 		virtual void OnUpdate() = 0;
 
 		using EventCallbackFunc = std::function<void(Event&)>;

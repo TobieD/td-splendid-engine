@@ -11,9 +11,13 @@ namespace Splendid
 		WindowsWindow(const WindowConfig& config);
 		virtual ~WindowsWindow();
 
+		void OnStartRender() override;
+		void OnEndRender() override;
 		void OnUpdate() override;
 
 		virtual void SetEventCallback(const EventCallbackFunc& callback) { m_Data.Callback = callback; }
+
+		inline GLFWwindow* GetNativeWindow() { return m_Window; }
 
 	private:
 		virtual void Initialize(const WindowConfig& config);

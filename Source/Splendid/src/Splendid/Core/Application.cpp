@@ -28,11 +28,24 @@ namespace Splendid
 	{
 		while (m_Running)
 		{
+			m_Window->OnStartRender();
+
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnRenderStart();
+			}
+
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();
 			}
 
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnRenderEnd();
+			}
+
+			m_Window->OnEndRender();
 			m_Window->OnUpdate();
 		}
 	}

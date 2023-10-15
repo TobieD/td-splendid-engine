@@ -109,7 +109,6 @@
 
 #include <splendidpch.h>
 #include "imgui.h"
-#include "glad/glad.h"
 #ifndef IMGUI_DISABLE
 #include "imgui_impl_opengl3.h"
 #include <stdio.h>
