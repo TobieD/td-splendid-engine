@@ -24,9 +24,10 @@ public:
 class Sandbox : public Splendid::SplendidApplication
 {
 public:
-	Sandbox()
+	Sandbox():
+		SplendidApplication(Splendid::WindowConfig("Sandbox", 640, 480))
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
 		PushOverlay(new Splendid::ImGuiLayer());
 	}
 

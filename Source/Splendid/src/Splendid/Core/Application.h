@@ -12,7 +12,7 @@ namespace Splendid
 	class SPLENDID_API SplendidApplication
 	{
 	public:
-		SplendidApplication();
+		SplendidApplication(const WindowConfig& config);
 		virtual ~SplendidApplication();
 
 		void Run();

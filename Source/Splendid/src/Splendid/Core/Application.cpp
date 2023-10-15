@@ -6,16 +6,16 @@
 
 namespace Splendid
 {
-	#define BIND_EVENT_FN(x) std::bind(&SplendidApplication::x, this, std::placeholders::_1)
+#define BIND_EVENT_FN(x) std::bind(&SplendidApplication::x, this, std::placeholders::_1)
 
 	SplendidApplication* SplendidApplication::s_Instance = nullptr;
 
-	SplendidApplication::SplendidApplication()
+	SplendidApplication::SplendidApplication(const WindowConfig& config)
 	{
 		SP_CORE_ASSERT(!s_Instance, "Application already exists!")
-		s_Instance = this;
+			s_Instance = this;
 
-		m_Window = std::unique_ptr<Window>(Window::Create());
+		m_Window = std::unique_ptr<Window>(Window::Create(config));
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 
@@ -23,7 +23,7 @@ namespace Splendid
 	{
 	}
 
-	#pragma region  Application Loops
+#pragma region  Application Loops
 	void SplendidApplication::Run()
 	{
 		while (m_Running)
@@ -50,10 +50,10 @@ namespace Splendid
 				break;
 			}
 		}
-		
+
 	}
 
-	#pragma endregion
+#pragma endregion
 
 	bool SplendidApplication::OnWindowClose(WindowCloseEvent& e)
 	{
@@ -61,7 +61,7 @@ namespace Splendid
 		return true;
 	}
 
-	#pragma region  Layer Stack Management
+#pragma region  Layer Stack Management
 	void SplendidApplication::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
@@ -73,5 +73,5 @@ namespace Splendid
 		m_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
 	}
-	#pragma endregion
+#pragma endregion
 }
