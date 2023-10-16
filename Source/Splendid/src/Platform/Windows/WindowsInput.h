@@ -1,5 +1,5 @@
 #pragma once
-#include "Splendid/Core/Input.h"
+#include <Splendid/Events/Input.h>
 
 namespace Splendid {
 	class WindowsInput: public Input

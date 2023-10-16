@@ -6,8 +6,7 @@
 
 #include <GLFW/glfw3.h>
 #include <Splendid/Core/Application.h>
-#include <Platform/Windows/WindowsWindow.h>
-#include <Splendid/Core/Input.h>
+#include <Splendid/Events/Input.h>
 
 namespace Splendid
 {

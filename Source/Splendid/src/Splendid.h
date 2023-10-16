@@ -6,6 +6,11 @@
 #include "Splendid/Core/Application.h"
 #include "Splendid/Layers/Layer.h"
 
+//Input
+#include "Splendid/Events/Input.h"
+#include "Splendid/Events/KeyCodes.h"
+#include "Splendid/Events/MouseButtonCodes.h"
+
 //Layers
 #include "Splendid/ImGui/ImGuiLayer.h"
 

@@ -11,7 +11,10 @@ public:
 
 	void OnUpdate() override
 	{
-
+		if (Splendid::Input::IsKeyPressed(SP_KEY_TAB))
+		{
+			SP_INFO("Pressed 'Tab'");
+		}
 	}
 
 	void OnEvent(Splendid::Event& event) override
@@ -27,7 +30,7 @@ public:
 	Sandbox():
 		SplendidApplication(Splendid::WindowConfig("Sandbox", 1600, 800))
 	{
-		//PushLayer(new ExampleLayer());
+		PushLayer(new ExampleLayer());
 		PushOverlay(new Splendid::ImGuiLayer());
 	}
 
