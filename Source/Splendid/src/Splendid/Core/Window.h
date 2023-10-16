@@ -38,6 +38,8 @@ namespace Splendid
 		inline unsigned int GetWidth() { return m_Config.Width; }
 		inline unsigned int GetHeight() { return m_Config.Height; }
 
+		virtual void* GetNativeWindow() const = 0;
+
 	protected:
 		WindowConfig m_Config;
 	};

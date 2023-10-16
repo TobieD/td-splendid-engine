@@ -11,7 +11,7 @@ namespace Splendid
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
 
-		EVENT_CLASS_CATEGORY(Keyboard | Input)
+		EVENT_CLASS_CATEGORY(Keyboard | Inputs)
 
 	protected:
 		KeyEvent(int keyCode)

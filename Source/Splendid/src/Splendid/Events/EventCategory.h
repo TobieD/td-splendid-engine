@@ -8,7 +8,7 @@ namespace Splendid
 	{
 		None = 0,
 		Application = BIT(0),
-		Input = BIT(1),
+		Inputs = BIT(1),
 		Keyboard = BIT(2),
 		Mouse = BIT(3),
 		MouseButton = BIT(4)

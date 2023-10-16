@@ -11,7 +11,7 @@ namespace Splendid
 	public:
 		inline int GetButton() const { return m_Button; }
 
-		EVENT_CLASS_CATEGORY(Mouse|Input)
+		EVENT_CLASS_CATEGORY(Mouse| Inputs)
 
 		std::string ToString() const override
 		{
@@ -57,7 +57,7 @@ namespace Splendid
 		inline float GetX() const { return m_MouseX; }
 		inline float GetY() const { return m_MouseY; }
 
-		EVENT_CLASS_CATEGORY(Mouse | Input)
+		EVENT_CLASS_CATEGORY(Mouse | Inputs)
 		EVENT_CLASS_TYPE(MouseMoved)
 
 		std::string ToString() const override
@@ -80,7 +80,7 @@ namespace Splendid
 		inline float GetX() const { return m_OffsetX; }
 		inline float GetY() const { return m_OffsetY; }
 
-		EVENT_CLASS_CATEGORY(Mouse | Input)
+		EVENT_CLASS_CATEGORY(Mouse | Inputs)
 		EVENT_CLASS_TYPE(MouseScrolled)
 
 		std::string ToString() const override

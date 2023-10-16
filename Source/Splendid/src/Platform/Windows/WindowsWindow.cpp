@@ -149,7 +149,7 @@ namespace Splendid
 				MouseMovedEvent event((float)x, (float)y);
 				data.Callback(event);
 			});
-	}
+	}	
 
 	void WindowsWindow::Shutdown()
 	{
@@ -168,8 +168,6 @@ namespace Splendid
 
 		glClearColor(0.25f, 0.25f, 0.25f, 1.00f);
 		glClear(GL_COLOR_BUFFER_BIT);
-
-
 	}
 
 	void WindowsWindow::OnEndRender()

@@ -7,6 +7,7 @@
 #include <GLFW/glfw3.h>
 #include <Splendid/Core/Application.h>
 #include <Platform/Windows/WindowsWindow.h>
+#include <Splendid/Core/Input.h>
 
 namespace Splendid
 {
@@ -60,10 +61,12 @@ namespace Splendid
 	
 	void Splendid::ImGuiLayer::OnUpdate()
 	{
+		auto [x, y] = Input::GetMousePosition();
 		ImGuiIO& io = ImGui::GetIO();
 
 		ImGui::Begin("Performance");
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+		ImGui::Text("MousePos: [%.1f, %.1f]", x,y);
 		ImGui::End();
 	}
 

@@ -45,7 +45,7 @@ namespace Splendid
 				layer->OnRenderEnd();
 			}
 
-			m_Window->OnEndRender();
+			m_Window->OnEndRender();		
 			m_Window->OnUpdate();
 		}
 	}
